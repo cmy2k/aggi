@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-family: arial, sans-serif;
+    font-size: 11px;
+    font-weight: lighter;
+  }
+
+  #graphic {
+    width: 75%;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  #hoverRegions {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+  }
+
+  .hoverRegion {
+    cursor: help;
+    fill: rgba(0,0,0,0);
+  }
+
+  .underline {
+    stroke: rgba(240,113,21,0.65);
+  }
+
+  #tooltip {
+    position: absolute;
+    width: 250px;
+    height: 200px;
+    top: 0px;
+    left: 0px;
+  }
+
+  #tooltip_text {
+    background-color: white;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+  }
+</style>
+</head>
+<body>
+  <img id="graphic" src="graphic.jpg">
+
+  <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+  <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+  <svg id="hoverRegions" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" onload="init(evt)" viewBox = "0 0 1014 539">
+  <!-- Hover SVG logic taken from http://www.petercollingridge.co.uk/interactive-svg-components/tooltip -->
+  <script type="text/ecmascript"><![CDATA[
+    var hoverText = {
+      "carbonDioxide": "A naturally occurring gas, also a by-product of burning fossil fuels, such as oil, gas and coal, of burning biomass and of land use changes and other industrial processes. It is the principal man-made greenhouse gas that affects the Earth's climate by trapping heat from the sun in the atmosphere.",
+      "methane": "Methane is the major component of natural gas and is associated with all hydrocarbon fuels, animal husbandry and agriculture. Methane is a much more potent greenhouse gas than carbon dioxide, but less abundant. The heat-trapping potential of methane is 34 times greater than carbon dioxide over a 100-year period.",
+      "nitrousOxide": "The primary man-made source of nitrous oxide is agriculture (soil and animal manure management). Sewage treatment, combustion of fossil fuels, and chemical industrial processes are other major sources. Nitrous oxide is more potent than carbon dioxide and methane, and its warming potential is 300 times greater than that of carbon dioxide.",
+      "cfc11AndCfc12": "Chlorofluorocarbons are chemicals that contain molecules of chlorine, fluorine, and carbon. The main sources are aerosol sprays, blowing agents, solvents, and refrigerants. Many countries have phased out their industrial use under the Montreal Protocol.",
+      "otherHalogenatedGasses": "Other Halogenated Gases are defined as gases that contain fluorine, chlorine, or bromine. Incorporation of these gases into industrial products and processes has caused concentrations to rapidly increase over the past few decades. They have high warming potentials and long atmospheric lifetimes.",
+      "longLivedHeatTrappingGasses": "These are gases that reside in the atmosphere for long periods of time (decades, centuries, or longer) and have the ability to trap heat. Nitrous oxide remains in the atmosphere for 121 years, and carbon dioxide that is not absorbed can stay in the atmosphere for thousands of years.",
+      "kyotoProtocol": "The Kyoto Protocol is an international treaty that sets binding greenhouse gas emissions reduction targets for participating countries. Adopted in 1997, implementation began in 2005.",
+      "preIndustrial": "The Industrial Revolution occurred in the 18th and 19th centuries and was the period of transition away from agrarian economies to manufacturing-based economies dominated by fossil fuels."
+    };
+
+    function init(evt) {
+      if ( window.svgDocument == null ) {
+        svgDocument = evt.target.ownerDocument;
+      }
+
+      tooltip = svgDocument.getElementById('tooltip');
+      tootip_text = svgDocument.getElementById('tooltip_text');
+      tooltip_bg = svgDocument.getElementById('tooltip_bg');
+      hideTooltip();
+    }
+
+    function showTooltip(evt, key) {
+      var mouseovertext = hoverText[key];
+      tooltip.style.left = evt.x + 5 + 'px';
+      tooltip.style.top = evt.y + 5 + 'px';
+      tootip_text.firstChild.data = mouseovertext;
+      tooltip.style.display = '';
+      //tooltip.setAttributeNS(null,"visibility","visible");
+    }
+
+    function hideTooltip() {
+      tooltip.style.display = 'none';
+    }
+  ]]></script>
+
+  <!-- overlays and underlines -->
+  <rect id="longLivedHeatTrappingGasses_hov" onmousemove="showTooltip(evt, 'longLivedHeatTrappingGasses')" class="hoverRegion" x="582" y="114" width="155" height="11" onmouseout="hideTooltip(evt)" />
+  <line class="underline" x1="582" x2="737" y1="125" y2="125" stroke-dasharray="5, 2" />
+
+  <rect id="otherHalogenatedGasses_hov" onmousemove="showTooltip(evt, 'otherHalogenatedGasses')" class="hoverRegion" x="595" y="128" width="123" height="11" onmouseout="hideTooltip(evt)" />
+  <line class="underline" x1="595" x2="718" y1="139" y2="139" stroke-dasharray="5, 2" />
+
+  <rect id="cfc11AndCfc12_hov" onmousemove="showTooltip(evt, 'cfc11AndCfc12')" class="hoverRegion" x="595" y="141" width="95" height="11" onmouseout="hideTooltip(evt)" />
+  <line class="underline" x1="595" x2="690" y1="152" y2="152" stroke-dasharray="5, 2" />
+
+  <rect id="nitrousOxide_hov" onmousemove="showTooltip(evt, 'nitrousOxide')" class="hoverRegion" x="595" y="156" width="65" height="11" onmouseout="hideTooltip(evt)" />
+  <line class="underline" x1="595" x2="660" y1="167" y2="167" stroke-dasharray="5, 2" />
+
+  <rect id="methane_hov" onmousemove="showTooltip(evt, 'methane')" class="hoverRegion" x="595" y="171" width="43" height="11" onmouseout="hideTooltip(evt)" />
+  <line class="underline" x1="595" x2="638" y1="182" y2="182" stroke-dasharray="5, 2" />
+
+  <rect id="carbonDioxide_hov" onmousemove="showTooltip(evt, 'carbonDioxide')" class="hoverRegion" x="595" y="185" width="74" height="11" onmouseout="hideTooltip(evt)" />
+  <line class="underline" x1="595" x2="669" y1="196" y2="196" stroke-dasharray="5, 2" />
+
+  <rect id="kyotoProtocol_hov" onmousemove="showTooltip(evt, 'kyotoProtocol')" class="hoverRegion" x="31" y="293" width="12" height="90" onmouseout="hideTooltip(evt)" />
+  <line class="underline" x1="43" x2="43" y1="293" y2="383" stroke-dasharray="5, 2" />
+
+  <rect id="preIndustrial_hov" onmousemove="showTooltip(evt, 'preIndustrial')" class="hoverRegion" x="31" y="170" width="12" height="77" onmouseout="hideTooltip(evt)" />
+  <line class="underline" x1="43" x2="43" y1="170" y2="247" stroke-dasharray="5, 2" />
+
+</svg>
+</xml>
+
+<div id="tooltip">
+  <div id="tooltip_wrapper">
+    <p id="tooltip_text" xmlns="http://www.w3.org/1999/xhtml"> </p>
+  </div>
+</div>
+
+</body>
+</html>
